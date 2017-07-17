@@ -1,0 +1,8 @@
+# for using python-openstackclient without additional parameters
+export OS_AUTH_URL="https://openstack.com:5000/v3"
+export OS_USERNAME="xxx"
+export OS_PASSWORD="xxx"
+export OS_DOMAIN_NAME="xxx.corp"
+export OS_TENANT_NAME="project_name"
+export OS_IDENTITY_API_VERSION=3
+# export OS_COMPUTE_API_VERSION=2

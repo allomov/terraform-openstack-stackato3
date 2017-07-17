@@ -1,0 +1,13 @@
+openstack_identity_endpoint = "some-url"
+openstack_username = ""
+openstack_password = ""
+openstack_tenant_name = "XXX"
+openstack_region = "RegionOne"
+network = "10.10"
+# use `nova network-list` command to find out this value
+openstack_public_network_id = "xxxxxxxxx"
+jumpbox_image_id = "xxxxxxx"
+jumpbox_key_pair = "bosh"
+jumpbox_public_key = "~/.ssh/bosh.pub"
+jumpbox_private_key = "~/.ssh/bosh.pem"
+openstack_availability_zone = "nova"

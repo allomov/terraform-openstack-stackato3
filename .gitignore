@@ -1,0 +1,13 @@
+images/*
+*.swp
+*.tfvars
+*.tfplan
+*.tfstate
+*.tfstate.backup
+*.lock*
+crash.log
+.terraform/
+go
+tmp
+.envrc
+
