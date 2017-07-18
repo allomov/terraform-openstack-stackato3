@@ -27,8 +27,23 @@ sudo chmod 400 ~/.ssh/id_rsa
 git clone git@github.com:allomov/terraform-openstack-stackato3.git
 cd terraform-openstack-stackato3
 
-# wget -O images/helion-stackato.zip http://downloads.stackato.com/vm/v3.6.2/helion-stackato-v362-openstack.zip
-# unzip images/helion-stackato.zip
+# http://downloads.stackato.com/vm/v3.6.2/helion-stackato-v362-kvm.zip
+pushd images
+  wget -O helion-stackato-v362-openstack.zip http://downloads.stackato.com/vm/v3.6.2/helion-stackato-v362-openstack.zip
+  unzip helion-stackato-v362-openstack.zip
+popd
+
+pushd /tmp
+  wget https://releases.hashicorp.com/terraform/0.9.11/terraform_0.9.11_linux_amd64.zip
+  sudo unzip terraform_0.9.11_linux_amd64.zip -d /usr/local/bin
+
+  wget http://downloads.stackato.com/client/v3.2.6/stackato-3.2.6-linux-glibc2.3-x86_64.zip
+  unzip stackato-3.2.6-linux-glibc2.3-x86_64.zip
+  sudo mv stackato-3.2.6-linux-glibc2.3-x86_64/stackato /usr/local/bin
+
+popd
+
+
 
 # pushd /tmp
 #   wget https://api.54.183.103.25.nip.io/static/stackato-3.2.4-linux-glibc2.3-x86_64.zip --no-check-certificate

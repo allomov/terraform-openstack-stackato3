@@ -23,7 +23,3 @@ resource "openstack_networking_router_interface_v2" "interface_1" {
     subnet_id = "${openstack_networking_subnet_v2.subnet_1.id}"
     router_id = "${openstack_networking_router_v2.router_1.id}"
 }
-
-resource "openstack_networking_floatingip_v2" "jumpbox" {
-  pool = "admin_floating_net"
-}

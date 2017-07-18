@@ -10,6 +10,30 @@ resource "openstack_compute_secgroup_v2" "ssh" {
   }
 }
 
+resource "openstack_compute_secgroup_v2" "http" {
+  name = "public-http"
+  description = "Security group for instances that will have public SSH access"
+  region = "${var.openstack_region}"
+  rule {
+    from_port = 80
+    to_port = 80
+    ip_protocol = "tcp"
+    cidr = "0.0.0.0/0"
+  }
+}
+
+resource "openstack_compute_secgroup_v2" "https" {
+  name = "public-https"
+  description = "Security group for instances that will have public SSH access"
+  region = "${var.openstack_region}"
+  rule {
+    from_port = 443
+    to_port = 443
+    ip_protocol = "tcp"
+    cidr = "0.0.0.0/0"
+  }
+}
+
 # TODO: move from ::/0 to subnets into security groups
 # TODO: add BOSH from_group_id
 resource "openstack_compute_secgroup_v2" "bosh" {

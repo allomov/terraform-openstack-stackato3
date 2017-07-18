@@ -28,6 +28,10 @@ resource "openstack_compute_instance_v2" "jumpbox" {
   ]
 }
 
+resource "openstack_networking_floatingip_v2" "jumpbox" {
+  pool = "admin_floating_net"
+}
+
 resource "openstack_compute_floatingip_associate_v2" "jumpbox_ip_associate" {
   floating_ip = "${openstack_networking_floatingip_v2.jumpbox.address}"
   instance_id = "${openstack_compute_instance_v2.jumpbox.id}"
@@ -58,8 +62,29 @@ resource "null_resource" "jumpbox_provisioner" {
     destination = "/home/${var.jumpbox_user}/.ssh/id_rsa"
   }
 
+  provisioner "file" {
+    content     = "${file("${var.public_key_path}")}"
+    destination = "/home/${var.jumpbox_user}/.ssh/id_rsa.pub"
+  }
+
   provisioner "remote-exec" {
     script = "scripts/jumpbox.sh"
   }
+
+  provisioner "file" {
+    source      = "terraform.tfstate"
+    destination = "/home/${var.jumpbox_user}/terraform-openstack-stackato3"
+  }
+
+  provisioner "file" {
+    source      = "terraform.tfvars"
+    destination = "/home/${var.jumpbox_user}/terraform-openstack-stackato3"
+  }
+
+  provisioner "file" {
+    source      = "terraform.tfvars"
+    destination = "/home/${var.jumpbox_user}/terraform-openstack-stackato3"
+  }
+
 
 }
