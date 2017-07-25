@@ -1,14 +1,9 @@
 
 resource "openstack_compute_instance_v2" "node" {
-
-  name              = "${var.prefix}-${var.name}-node"
+  name              = "${var.name}"
   image_name        = "${var.image_name}"
   flavor_name       = "${var.flavor_name}"
   key_pair          = "${var.key_pair_name}"
-  # region = "RegionOne"
-  # region = "${}"
-
-
   network {
     name = "${var.private_network_name}"
   }
