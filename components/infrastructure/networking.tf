@@ -1,4 +1,3 @@
-
 resource "openstack_networking_network_v2" "private_network" {
     name = "${var.prefix}_private_network"
     admin_state_up = "true"
@@ -16,6 +15,7 @@ resource "openstack_networking_router_v2" "router_1" {
   name = "${var.prefix}_router"
   admin_state_up = "true"
   region = "${var.openstack_region}"
+  # external_gateway = "${data.openstack_networking_network_v2.public_network.id}"
   external_gateway = "${var.openstack_public_network_id}"
 }
 

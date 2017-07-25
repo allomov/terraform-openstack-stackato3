@@ -1,5 +1,5 @@
 resource "openstack_compute_secgroup_v2" "ssh" {
-  name = "public-ssh"
+  name = "ssh"
   description = "Security group for instances that will have public SSH access"
   region = "${var.openstack_region}"
   rule {
@@ -11,7 +11,7 @@ resource "openstack_compute_secgroup_v2" "ssh" {
 }
 
 resource "openstack_compute_secgroup_v2" "http" {
-  name = "public-http"
+  name = "http"
   description = "Security group for instances that will have public SSH access"
   region = "${var.openstack_region}"
   rule {
@@ -23,7 +23,7 @@ resource "openstack_compute_secgroup_v2" "http" {
 }
 
 resource "openstack_compute_secgroup_v2" "https" {
-  name = "public-https"
+  name = "https"
   description = "Security group for instances that will have public SSH access"
   region = "${var.openstack_region}"
   rule {
@@ -34,19 +34,24 @@ resource "openstack_compute_secgroup_v2" "https" {
   }
 }
 
+resource "openstack_compute_secgroup_v2" "private_network" {
+  name = "private-network"
+  description = "Open traffic within private network."
+  region = "${var.openstack_region}"
+  rule {
+    from_port = 1
+    to_port = 65535
+    ip_protocol = "tcp"
+    self = true
+  }
+}
+
 # TODO: move from ::/0 to subnets into security groups
 # TODO: add BOSH from_group_id
 resource "openstack_compute_secgroup_v2" "bosh" {
   name = "bosh"
   description = "BOSH Security group."
   region = "${var.openstack_region}"
-
-  # rule {
-  #   from_port = 1
-  #   to_port = 65535
-  #   ip_protocol = "tcp"
-  #   from_group_id = "${openstack_compute_secgroup_v2.bosh.id}"
-  # }
 
   rule {
     from_port = 25777
@@ -116,18 +121,6 @@ resource "openstack_compute_secgroup_v2" "cf-public" {
     ip_protocol = "tcp"
     cidr = "0.0.0.0/0"
   }
-  rule {
-    from_port = 68
-    to_port = 68
-    ip_protocol = "udp"
-    cidr = "0.0.0.0/0"
-  }
-}
-
-resource "openstack_compute_secgroup_v2" "cf-private" {
-  name = "cf-private"
-  description = "Security group for instances that will have public SSH access"
-  region = "${var.openstack_region}"
   rule {
     from_port = 68
     to_port = 68
