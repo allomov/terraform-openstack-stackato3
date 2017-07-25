@@ -1,14 +1,9 @@
-### How to install
+# Terraform for Stackato 3.6
 
-```
-pip install python-openstackclient
-pip install --upgrade python-openstackclient
-cp .envrc{.example,}
-cp terrafor.tfvars{.example,}
-vi .envrc
-openstack network list
-vi terrafor.tfvars
+### Description
 
-terraform apply -target=openstack_compute_instance_v2.jumpbox
+This repo is used to present running Stackato 3.6 clusters using Terraform scripts for OpenStack.
 
-```
+For more details check README in components folder.
+
+For terraform samples in `sample` folder.

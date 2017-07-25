@@ -19,3 +19,7 @@ output "default_key_pair_name" { value = "${openstack_compute_keypair_v2.default
 output "stackato_image_name"   { value = "${openstack_images_image_v2.stackato_image.name}" }
 output "bastion_image_name"   { value = "${openstack_images_image_v2.bastion_image.name}" }
 
+output "default_flavor_name" { value = "${var.default_flavor_name}" }
+output "small_flavor_name"   { value = "${var.small_flavor_name}" }
+output "large_flavor_name"   { value = "${var.large_flavor_name}" }
+output "medium_flavor_name"  { value = "${var.medium_flavor_name}" }

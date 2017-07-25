@@ -15,5 +15,8 @@ variable "key_pair_name"       { default = "stackato3-key-pair" }
 variable "network"             { default = "10.10" }
 variable "offset"              { default = "0" }
 variable "default_image_name"  { default = "Ubuntu 16.04" }
-variable "default_flavor_name" { default = "m1.medium" }
+
+variable "default_flavor_name" { default = "m1.small" }
 variable "small_flavor_name"   { default = "m1.small" }
+variable "large_flavor_name"   { default = "m1.large" }
+variable "medium_flavor_name"  { default = "m1.medium" }

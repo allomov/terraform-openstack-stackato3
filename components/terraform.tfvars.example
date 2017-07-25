@@ -1,0 +1,9 @@
+openstack_identity_endpoint = "auth-url"
+openstack_username = "username"
+openstack_password = "password"
+openstack_tenant_name = "tenant"
+openstack_domain_name = "domain"
+openstack_region = "RegionOne"
+# use `openstack networks list` command to find out this value
+openstack_public_network_id = "d5a46201-4ea8-45c4-b634-07f589ad59fd"
+openstack_public_network_name = "admin_floating_net"
