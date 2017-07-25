@@ -3,6 +3,7 @@ images/*
 *.tfvars
 *.tfplan
 *.tfstate
+*.tfstate.*
 *.tfstate.backup
 *.lock*
 crash.log
@@ -10,4 +11,5 @@ crash.log
 go
 tmp
 .envrc
-
+tmp
+*.backup

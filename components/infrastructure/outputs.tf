@@ -16,6 +16,6 @@ output "security_groups" {
 
 output "default_key_pair_name" { value = "${openstack_compute_keypair_v2.default_key_pair.name}" }
 
-output "stackato_images_name"   { value = "${openstack_images_image_v2.stackato_image.name}" }
-output "bastion_images_name"   { value = "${openstack_images_image_v2.bastion_image.name}" }
+output "stackato_image_name"   { value = "${openstack_images_image_v2.stackato_image.name}" }
+output "bastion_image_name"   { value = "${openstack_images_image_v2.bastion_image.name}" }
 
