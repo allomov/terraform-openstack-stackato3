@@ -39,7 +39,7 @@ resource "null_resource" "bastion_provisioner" {
 
   provisioner "file" {
     content     = "${file("${var.private_key_path}")}"
-    destination = "/home/${module.bastion.username}/.ssh/id_rsa"
+    destination = "/home/${module.bastion.username}/.ssh/host_id_rsa"
   }
 
   provisioner "file" {
