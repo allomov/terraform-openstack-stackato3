@@ -8,11 +8,10 @@ data "terraform_remote_state" "infrastructure" {
 
 module "microcloud" {
   source = "../../modules/stackato/microcloud"
-  name = "${var.prefix}-microcloud"
 
-  stackato_image_name        = "${data.terraform_remote_state.infrastructure.stackato_image_name}"
+  stackato_image_name   = "${data.terraform_remote_state.infrastructure.stackato_image_name}"
   flavor_name           = "${data.terraform_remote_state.infrastructure.medium_flavor_name}"
-  public_network_name = "${data.terraform_remote_state.infrastructure.public_network_name}"
+  public_network_name   = "${data.terraform_remote_state.infrastructure.public_network_name}"
   private_network_name  = "${data.terraform_remote_state.infrastructure.private_network_name}"
   key_pair_name         = "${data.terraform_remote_state.infrastructure.default_key_pair_name}"
 
@@ -24,37 +23,22 @@ module "microcloud" {
   ]
 }
 
-resource "null_resource" "microcloud_provisioner" {
-  # Changes to any instance of the cluster requires re-provisioning
-  triggers {
-    microcloud_ip = "${module.microcloud.id}"
-  }
+# resource "null_resource" "microcloud_provisioner" {
+#   # Changes to any instance of the cluster requires re-provisioning
+#   triggers {
+#     microcloud_ip = "${module.microcloud.id}"
+#   }
 
-  connection {
-    type = "ssh"
-    user = "${module.microcloud.username}"
-    host = "${module.microcloud.floating_ip}"
-    private_key = "${file("${var.private_key_path}")}"
-    timeout = "5m"
-  }
+#   connection {
+#     type = "ssh"
+#     user = "${module.microcloud.username}"
+#     host = "${module.microcloud.floating_ip}"
+#     private_key = "${file("${var.private_key_path}")}"
+#     timeout = "5m"
+#   }
 
-  provisioner "remote-exec" {
-    script = "./scripts/microcloud.sh"
-  }
+#   provisioner "remote-exec" {
+#     script = "./scripts/microcloud.sh"
+#   }
 
-  provisioner "file" {
-    source      = "terraform.tfstate"
-    destination = "/home/${module.microcloud.username}/terraform-openstack-stackato3"
-  }
-
-  provisioner "file" {
-    source      = "terraform.tfvars"
-    destination = "/home/${module.microcloud.username}/terraform-openstack-stackato3"
-  }
-
-  provisioner "file" {
-    source      = "terraform.tfvars"
-    destination = "/home/${module.microcloud.username}/terraform-openstack-stackato3"
-  }
-
-}
+# }

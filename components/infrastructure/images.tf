@@ -9,10 +9,6 @@ resource "openstack_images_image_v2" "stackato_image" {
   }
 }
 
-# data "openstack_images_image_v2" "bastion_image" {
-
-# }
-
 resource "openstack_images_image_v2" "bastion_image" {
   name              = "${var.prefix}-bastion"
   container_format  = "bare"

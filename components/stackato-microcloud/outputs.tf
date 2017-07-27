@@ -1,5 +1,10 @@
+data "template_file" "welcome_message" {
+  template = "\n\nWelcome!\nUse following command to access Stackato:\n\n\t\tstackato target api.$${domain}\n\n"
+  vars {
+    domain = "${module.microcloud.domain}"
+  }
+}
 
-
-# output "floating_ip" {
-#   value = "${aws_eip.ip.public_ip}"
-# }
+output "welcome_message" {
+  value = "${data.template_file.welcome_message.rendered}"
+}
