@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 echo "stackato" | sudo -S bash -c "echo 'stackato ALL=(root) NOPASSWD: ALL' >> /etc/sudoers"
 
@@ -8,4 +7,6 @@ echo "stackato" | sudo -S bash -c "echo 'stackato ALL=(root) NOPASSWD: ALL' >> /
 kato process ready --block 180 cloud_controller_ng
 kato node rename ${domain}
 kato node setup core api.${domain}
+kato restart
 
+sudo reboot

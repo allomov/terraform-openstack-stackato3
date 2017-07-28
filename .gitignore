@@ -13,3 +13,4 @@ tmp
 .envrc
 tmp
 *.backup
+triggers
