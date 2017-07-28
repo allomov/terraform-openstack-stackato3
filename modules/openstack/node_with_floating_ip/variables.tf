@@ -1,13 +1,10 @@
-variable "name" {}
-variable "image_name" {}
-variable "flavor_name" {}
-variable "key_pair_name" {}
-variable "private_network_name" {}
-# variable "private_network_id" {}
-
-variable "floating_network_name" {}
-# variable "floating_network_id" {}
+variable "vm_name"         {}
 variable "security_groups" { type = "list" }
+variable "image_name"      {}
+variable "flavor_name"     {}
+variable "username"        {}
 
-variable "username" { default = "ubuntu" }
-variable "prefix"   { default = "stackato3" }
+variable "infrastructure" {
+  type = "map"
+  description = "Infrastructure state hash. See infrastructure component outputs."
+}

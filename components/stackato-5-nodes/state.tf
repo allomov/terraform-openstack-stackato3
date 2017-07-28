@@ -6,7 +6,10 @@ data "terraform_remote_state" "infrastructure" {
   }
 }
 
-module "microcloud" {
-  source = "../../modules/stackato/microcloud"
-  infrastructure = "${data.terraform_remote_state.infrastructure.state}"
+data "terraform_remote_state" "bastion" {
+  backend = "local"
+
+  config {
+    path = "${path.module}/../bastion/terraform.tfstate"
+  }
 }

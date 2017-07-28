@@ -8,18 +8,17 @@ data "terraform_remote_state" "infrastructure" {
 
 module "bastion" {
   source = "../../modules/openstack/node_with_floating_ip"
-  name = "bastion"
 
+  vm_name = "bastion"
   image_name            = "${data.terraform_remote_state.infrastructure.bastion_image_name}"
   flavor_name           = "${data.terraform_remote_state.infrastructure.small_flavor_name}"
-  floating_network_name = "${data.terraform_remote_state.infrastructure.public_network_name}"
-  private_network_name  = "${data.terraform_remote_state.infrastructure.private_network_name}"
-  key_pair_name         = "${data.terraform_remote_state.infrastructure.default_key_pair_name}"
   username = "ubuntu"
 
+  infrastructure = "${data.terraform_remote_state.infrastructure.state}"
+
   security_groups = [
-    "${lookup(data.terraform_remote_state.infrastructure.security_groups, "ssh")}",
-    "${lookup(data.terraform_remote_state.infrastructure.security_groups, "private_network")}"
+    "${lookup(data.terraform_remote_state.infrastructure.state, "security_group_ssh")}",
+    "${lookup(data.terraform_remote_state.infrastructure.state, "security_group_private_network")}"
   ]
 }
 

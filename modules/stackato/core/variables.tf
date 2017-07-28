@@ -1,4 +1,4 @@
-variable "vm_name" { default = "microcloud" }
+variable "vm_name" { default = "core" }
 variable "username" { default = "stackato" }
 variable "domain" { default = "" }
 variable "private_key_path" { default = "~/.ssh/id_rsa" }
